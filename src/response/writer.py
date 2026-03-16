@@ -1,7 +1,8 @@
 
 from pathlib import Path
 
-RESPONSE_DIR = Path("responses")
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+RESPONSE_DIR = PROJECT_ROOT / "responses"
 
 def save_response(filename: str, content: str):
     RESPONSE_DIR.mkdir(exist_ok=True)
