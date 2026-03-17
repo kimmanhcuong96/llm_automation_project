@@ -7,5 +7,10 @@ def run_prompt(prompt_file: str):
     prompt = load_prompt(prompt_file)
     response = call_llm(prompt)
 
-    output_file = prompt_file.replace(".txt", "_response.txt")
+    # Save under responses/ using the input file's basename.
+    stem = prompt_file.rsplit("\\", 1)[-1].rsplit("/", 1)[-1]
+    if stem.lower().endswith(".txt"):
+        output_file = stem[:-4] + "_response.txt"
+    else:
+        output_file = stem + "_response.txt"
     save_response(output_file, response)
